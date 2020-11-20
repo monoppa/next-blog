@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <div className='relative bg-white dark:bg-dim'>
-      <div className='flex items-center justify-between max-w-5xl px-4 py-6 mx-auto border-b border-gray-200 dark:border-gray-700 sm:px-6 md:justify-start md:space-x-10'>
+      <div className='flex items-center justify-between max-w-6xl px-4 py-6 mx-auto border-b border-gray-200 dark:border-gray-700 sm:px-6 md:justify-start md:space-x-10'>
         {/* logo */}
         <div className='flex justify-start lg:w-0 lg:flex-1'>
           <a href='#'>
