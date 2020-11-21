@@ -4,7 +4,13 @@ const colors = require('tailwindcss/colors');
 module.exports = {
   purge: {
     mode: 'all',
-    content: ['./posts/**/*.{js,mdx}', './next.config.js'],
+    content: [
+      './posts/**/*.{js,mdx}',
+      './components/**/*.js',
+      './pages/**/*.js',
+      './containers/**/*.js',
+      './next.config.js',
+    ],
     options: {
       whitelist: ['h1', 'h2', 'h3', 'p', 'blockquote', 'strong' /* etc. */],
     },
