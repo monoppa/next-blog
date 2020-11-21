@@ -3,12 +3,15 @@ import { arrayOf, shape, string } from 'prop-types';
 import Link from 'next/link';
 import Layout from 'components/Layout';
 import CardBlog from 'components/CardBlog';
+import CustomHead from 'components/CustomHead/CustomHead';
 
 const Home = (props) => {
   const { posts } = props;
 
   return (
     <Layout>
+      <CustomHead />
+
       <main className='max-w-6xl px-4 mx-auto sm:px-6'>
         <div className='mt-12'>
           <h2 className='text-xl tracking-tight text-gray-900 dark:text-gray-50 sm:text-2xl'>

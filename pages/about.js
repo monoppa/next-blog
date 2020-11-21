@@ -1,10 +1,13 @@
 import React from 'react';
 import {} from 'prop-types';
 import Layout from 'components/Layout';
+import CustomHead from 'components/CustomHead/CustomHead';
 
 const AboutPage = () => {
   return (
-    <Layout pageTitle='About'>
+    <Layout>
+      <CustomHead pageTitle='About' />
+
       <div>AboutPage</div>
     </Layout>
   );

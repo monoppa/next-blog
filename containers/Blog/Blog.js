@@ -2,9 +2,11 @@ import React from 'react';
 import { shape, string } from 'prop-types';
 import Head from 'next/head';
 import hydrate from 'next-mdx-remote/hydrate';
+
 import Layout from 'components/Layout';
 import BlogImage from 'components/BlogImage';
 import CustomLink from 'components/CustomLink';
+import CustomHead from 'components/CustomHead/CustomHead';
 
 const components = {
   a: CustomLink,
@@ -19,6 +21,8 @@ const Blog = (props) => {
 
   return (
     <Layout>
+      <CustomHead pageTitle={frontMatter.title} />
+
       <div className='max-w-6xl px-4 mx-auto mt-20 post-header lg:px-0'>
         <main className='mx-auto mb-12 prose lg:prose-lg'>
           <h1 style={{ marginBottom: 16 }}>{frontMatter.title}</h1>
