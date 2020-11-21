@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import {} from 'prop-types';
 import cx from 'classnames';
 import useDebounceCallback from 'hooks/useDebounceCallback';
@@ -93,13 +92,11 @@ const CardBlog = () => {
             </p>
           </div>
 
-          <Link href='/'>
-            <a className='inline-block p-1 text-sm transition-transform duration-100 transform cursor-pointer text-primary-600 hover:bg-primary-600 hover:text-white hover:-translate-y-1 hover:shadow-lg focus:translate-y-0 focus:outline-none'>
-              <span className='pb-1 border-b border-primary-600'>
-                Read more &rarr;
-              </span>
-            </a>
-          </Link>
+          <button className='inline-block p-1 text-sm transition-transform duration-100 transform cursor-pointer text-primary-600 hover:bg-primary-600 hover:text-white hover:-translate-y-1 hover:shadow-lg focus:translate-y-0 focus:outline-none'>
+            <span className='pb-1 border-b border-primary-600'>
+              Read more &rarr;
+            </span>
+          </button>
         </div>
       </div>
     </div>

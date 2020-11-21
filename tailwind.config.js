@@ -2,8 +2,14 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-  purge: ['./components/**/*.js', './pages/**/*.js', './containers/**/*.js'],
-  darkMode: 'media', // or 'media' or 'class'
+  purge: {
+    mode: 'all',
+    content: ['./posts/**/*.{js,mdx}', './next.config.js'],
+    options: {
+      whitelist: ['h1', 'h2', 'h3', 'p', 'blockquote', 'strong' /* etc. */],
+    },
+  },
+  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
@@ -22,8 +28,6 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
+  variants: {},
+  plugins: [require('@tailwindcss/typography')],
 };
