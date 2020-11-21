@@ -6,6 +6,7 @@ import CardBlog from 'components/CardBlog';
 
 const Home = (props) => {
   const { posts } = props;
+  console.log('Home -> posts', posts);
 
   return (
     <Layout>
@@ -18,7 +19,7 @@ const Home = (props) => {
           <ul className='mt-8 space-y-20'>
             {posts.map((post) => (
               <li key={post.title}>
-                <Link href='/'>
+                <Link href={`/blog/${post.slug}`}>
                   <a>
                     <CardBlog {...post} />
                   </a>
@@ -39,6 +40,7 @@ Home.propTypes = {
       coverImage: string.isRequired,
       timeToRead: string.isRequired,
       description: string.isRequired,
+      slug: string.isRequired,
     })
   ),
 };

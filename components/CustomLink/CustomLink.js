@@ -13,7 +13,7 @@ export default function CustomLink({ as, href, ...otherProps }) {
 }
 
 CustomLink.propTypes = {
-  as: string.isRequired,
+  as: string,
   href: string.isRequired,
 };
 
