@@ -6,7 +6,6 @@ import CardBlog from 'components/CardBlog';
 
 const Home = (props) => {
   const { posts } = props;
-  console.log('Home -> posts', posts);
 
   return (
     <Layout>

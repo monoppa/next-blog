@@ -1,0 +1,294 @@
+---
+slug: image-transformation-in-nextjs
+title: How to dynamically create responsive images with NextJS
+coverImage: /image-transformation-in-nextjs/photo-face.jpg
+publishDate: 2020-05-24T12:00:00.436Z
+description: Building a serverless image transformation API with NextJS
+tags: ['tech']
+---
+
+Working [demo](https://nextjs-image-transformation.now.sh/)
+
+Final code [repository](https://github.com/monoppa/nextjs-image-transformation)
+
+# Motivation
+
+There are a couple of existing solutions out there for our image transformation needs. Cloudinary for example. Cloudinary may work well for low-traffic projects, but not for projects gaining a good amount of traffic. Expenses could soon rise as our app quickly gains more traffic.
+
+# Our cost-effective solution
+
+Our proposed way of creating a severless image transformation API will use the following technologies:
+
+- NextJS
+- Vercel (where we deploy our NextJS app)
+- Unsplash (source of our test images)
+
+# Step 1: Initialize our app
+
+Create our base NextJS app
+
+```bash
+npm init next-app
+```
+
+Install dependencies
+
+```bash
+# sharp - image processing library
+# isomorphic-unfetch - fetch API
+npm install sharp isomorphic-unfetch --save
+```
+
+# Step 2: Setting up our image-transformation API route
+
+```bash
+# create our image function directory/file
+mkdir pages/api/image
+# create our file
+touch pages/api/image/[...slug].js
+```
+
+We have just created our API route.
+
+```
+/api/image/[...slug]
+```
+
+This is how NextJS handles Dynamic API routes. You can read more [here.](<[https://nextjs.org/docs/api-routes/dynamic-api-routes](https://nextjs.org/docs/api-routes/dynamic-api-routes)>)
+
+# Step 3: Building our image-transformation processing
+
+Open the file we have recently created and copy this code.
+
+```js
+// pages/api/image/[...slug].js
+
+export default async (request, response) => {
+  const {
+    query: { slug },
+  } = request;
+
+  const [options, imageUrl] = slug;
+
+  const decodedUrl = decodeURIComponent(imageUrl);
+
+  response.statusCode = 200;
+  response.json({ options, imageUrl: decodedUrl });
+};
+```
+
+Now try to access this path,
+
+```
+/api/image/w=800&h=800/https%3A%2F%2Fsource.unsplash.com%2F1Shk_PkNkNw%2F1600x900
+```
+
+You should be able to have a response like this:
+
+<Image
+  src='/image-transformation-in-nextjs/first-response.png'
+  alt='sample response'
+  height={4}
+/>
+
+The URL that you have just accessed is our final API path.
+
+```js
+// final API path
+/api/image/{options}/{imageUrl}
+
+// The options parameter will accept our desired image dimensions,
+// eg. width and height
+- options: `width=800&height=800`
+
+// imageUrl is the sourceUrl of the image we want to transform.
+- imageUrl: `https://source.unsplash.com/1Shk_PkNkNw/1600x900`
+```
+
+# Step 4: Parsing our options parameters
+
+On our `api/image/[...slug].js` file, copy the code below to parse our _options_ parameter. Parsing our _options_ parameter only means we are formatting the data to a shape we need.
+
+```js
+// Convert option in a string format to a key-value pair
+// key=value   { [key]: value }
+// key         { [key]: true }
+const optionToKeyVal = (option) =>
+  ((split) =>
+    split.length > 0
+      ? { [split[0]]: split.length > 1 ? split[1] : true }
+      : undefined)(option.split('='));
+
+// Parse options string and return options object
+const parseOptions = (options) => {
+  return options
+    .split('&')
+    .reduce((acc, option) => ({ ...acc, ...optionToKeyVal(option) }), {});
+};
+
+export default async (request, response) => {
+  const {
+    query: { slug },
+  } = request;
+
+  const [options, imageUrl] = slug;
+
+  const decodedUrl = decodeURIComponent(imageUrl);
+  const parsedOptions = parseOptions(options);
+
+  response.statusCode = 200;
+  response.json({ options, parsedOptions, imageUrl: decodedUrl });
+};
+```
+
+Accessing our API now should have a result like this,
+
+```json
+{
+  "options": "w=800&h=800",
+  // our parseOptions function will just transform our options to this format,
+  "parsedOptions": { "w": "800", "h": "800" },
+  "imageUrl": "https://source.unsplash.com/1Shk_PkNkNw/1600x900"
+}
+```
+
+# Step 5: Processing our image
+
+This is the part where we use _sharp_ to process our image to have the dimensions we want it to have.
+
+In this example we are just resizing our image. You can read more at [_sharp_ docs](https://sharp.pixelplumbing.com/api-resize).
+
+```js
+// api/image/[...slug].js
+import sharp from "sharp";
+import fetch from "isomorphic-unfetch";
+
+...
+
+export default async (request, response) => {
+  ...
+
+  // fetch our image stream
+  const readStream = await fetch(decodedUrl)
+
+  // handling our image processing using sharp
+  const transform = sharp()
+    .resize(
+      parsedOptions.w ? Number(parsedOptions.w) : undefined,
+      parsedOptions.h ? Number(parsedOptions.h) : undefined,
+      { fit: 'cover' }
+    )
+    .jpeg({ progressive: true })
+
+  response.statusCode = 200
+  response.json({ options, parsedOptions, imageUrl: decodedUrl })
+}
+```
+
+# Step 6: Response headers
+
+Now that our transform function is ready, it is now time to build response headers to be sent back to the client.
+
+```js
+export default async (request, response) => {
+  ...
+
+  response.statusCode = 200
+  // response.json({ options, parsedOptions, imageUrl: decodedUrl });
+
+  // setting our cache duration
+  const cacheMaxAge = 30 * 60 // 30 minutes
+  response.setHeader('cache-control', `public, max-age=${cacheMaxAge}`)
+
+  // setting our "Content-Type" as an image file
+  response.setHeader('Content-Type', readStream.headers.get('content-type'))
+
+  // final response
+  readStream.body.pipe(transform).pipe(response)
+}
+```
+
+# Wrapping up
+
+Now if we access our image API we should see an image with 800x800 dimension
+
+```
+/api/image/w=800&h=800/https%3A%2F%2Fsource.unsplash.com%2F1Shk_PkNkNw%2F1600x900
+```
+
+<Image
+  src='/image-transformation-in-nextjs/burger_800x800.jpg'
+  alt='sample image transformed'
+/>
+
+# Final code
+
+```js
+import sharp from 'sharp';
+import fetch from 'isomorphic-unfetch';
+
+// Convert option in a string format to a key-value pair
+// key=value   { [key]: value }
+// key         { [key]: true }
+const optionToKeyVal = (option) =>
+  ((split) =>
+    split.length > 0
+      ? { [split[0]]: split.length > 1 ? split[1] : true }
+      : undefined)(option.split('='));
+
+// Parse options string and return options object
+const parseOptions = (options) => {
+  return options
+    .split('&')
+    .reduce((acc, option) => ({ ...acc, ...optionToKeyVal(option) }), {});
+};
+
+export default async (request, response) => {
+  const {
+    query: { slug },
+  } = request;
+
+  const [options, imageUrl] = slug;
+
+  const decodedUrl = decodeURIComponent(imageUrl);
+
+  // fetch our image stream
+  const readStream = await fetch(decodedUrl);
+
+  // handling our image processing using sharp
+  const parsedOptions = parseOptions(options);
+  const transform = sharp()
+    .resize(
+      parsedOptions.w ? Number(parsedOptions.w) : undefined,
+      parsedOptions.h ? Number(parsedOptions.h) : undefined,
+      { fit: 'cover' }
+    )
+    .jpeg({ progressive: true });
+
+  response.statusCode = 200;
+
+  // setting our cache duration
+  const cacheMaxAge = 30 * 60; // 30 minutes
+  response.setHeader('cache-control', `public, max-age=${cacheMaxAge}`);
+
+  // setting our "Content-Type" as an image file
+  response.setHeader('Content-Type', readStream.headers.get('content-type'));
+
+  // final response
+  readStream.body.pipe(transform).pipe(response);
+};
+```
+
+Working [demo](https://nextjs-image-transformation.now.sh/)
+
+Final code [repository](https://github.com/monoppa/nextjs-image-transformation)
+
+# Final thoughts
+
+This image transformation API will in no way replace Cloudinary's massive feature sets. It is however a good way to start if you are looking for alternatives.
+
+Performance wise, I say it is pretty good when deployed to Vercel. I'm not an expert and I'm not entirely sure how to measure and compare performance versus other options out there.
+
+Cold-starts are not that bad, but when the cache is hit it really performs well.
+
+This is roughly a draft of building a robust image processing API. In the end what we are going for is to reduce the expense of hobbyists for their personal projects.

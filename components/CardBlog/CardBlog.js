@@ -5,7 +5,7 @@ import cx from 'classnames';
 import useDebounceCallback from 'hooks/useDebounceCallback';
 
 const CardBlog = (props) => {
-  const { title, publishDate, timeToRead, description } = props;
+  const { title, publishDate, timeToRead, description, coverImage } = props;
   const [hovered, hoveredSet] = useState(false);
 
   const [handleMouseEnter] = useDebounceCallback(
@@ -39,7 +39,7 @@ const CardBlog = (props) => {
         })}
       >
         <Image
-          src='/photo-face.jpg'
+          src={coverImage}
           layout='fill'
           className='object-cover rounded'
         />
@@ -102,6 +102,7 @@ CardBlog.propTypes = {
   publishDate: string.isRequired,
   timeToRead: string.isRequired,
   description: string.isRequired,
+  coverImage: string.isRequired,
 };
 
 CardBlog.defaultProps = {};

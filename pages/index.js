@@ -13,7 +13,7 @@ export async function getStaticProps() {
   const mdxUtils = await import('utils/mdxUtils');
   // const POSTS_PATH = (await import('utils/mdxUtils')).POSTS_PATH;
 
-  const posts = mdxUtils.postFilePaths.map((filePath) => {
+  const postsMap = mdxUtils.postFilePaths.map((filePath) => {
     const source = fs.readFileSync(path.join(mdxUtils.POSTS_PATH, filePath));
     const { content, data } = matter(source);
 
@@ -26,8 +26,14 @@ export async function getStaticProps() {
       ...restData,
       timeToRead: stats.text,
       publishDate,
+      publishDateString: dayjs(publishDateRaw).toISOString(),
     };
   });
+
+  const posts = postsMap.sort(
+    (post1, post2) =>
+      dayjs(post2.publishDateString) - dayjs(post1.publishDateString)
+  );
 
   return { props: { posts } };
 }
