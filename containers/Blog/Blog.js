@@ -21,7 +21,10 @@ const Blog = (props) => {
 
   return (
     <Layout>
-      <CustomHead pageTitle={frontMatter.title} />
+      <CustomHead
+        pageTitle={frontMatter.title}
+        description={frontMatter.description}
+      />
 
       <div className='max-w-6xl px-4 mx-auto mt-20 post-header lg:px-0'>
         <main className='mx-auto mb-12 prose lg:prose-lg'>
