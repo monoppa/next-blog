@@ -31,19 +31,21 @@ const CardBlog = (props) => {
       onMouseLeave={handleMouseLeave}
     >
       <div
-        style={{ height: 200 }}
         className={cx({
-          ['relative w-full mr-12 transition-all ease-in-out transform rounded md:w-1/2 duration-300']: true,
+          ['relative w-auto mr-12 transition-all ease-in-out transform rounded md:w-1/2 duration-300 flex']: true,
           ['shadow-2xl scale-105']: hovered,
           ['shadow-xl']: !hovered,
         })}
       >
         <Image
           src={coverImage}
-          layout='fill'
-          className='object-cover rounded'
+          className='flex-1 object-cover rounded'
+          width={528}
+          height={200}
         />
-        {/* <Img
+      </div>
+
+      {/* <Img
           className={[
             'block mr-4 rounded-tr-blog rounded-br-blog rounded-tl-blog shadow-nonde',
             'lg:hidden md:rounded-tr-sm md:rounded-br-sm md:rounded-tl-sm md:shadow-blog',
@@ -51,7 +53,7 @@ const CardBlog = (props) => {
           fluid={smCoverImage.childImageSharp.fluid}
         /> */}
 
-        {/* <div
+      {/* <div
           style={{
             transform: scale.interpolate((scale) => `scale(${scale})`),
           }}
@@ -64,7 +66,6 @@ const CardBlog = (props) => {
             fluid={lgCoverImage.childImageSharp.fluid}
           />
         </div> */}
-      </div>
 
       <div className='container flex flex-col justify-center w-full max-w-xl md:py-3 md:w-1/2'>
         <div>
