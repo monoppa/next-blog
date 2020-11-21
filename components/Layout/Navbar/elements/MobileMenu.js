@@ -1,6 +1,8 @@
 import React from 'react';
 import { func } from 'prop-types';
+import Link from 'next/link';
 import XIcon from 'components/Icons/XIcon';
+import NAV_ITEMS from '../NAV_ITEMS';
 
 const MobileMenu = ({ closeMobileMenu }) => {
   return (
@@ -30,33 +32,14 @@ const MobileMenu = ({ closeMobileMenu }) => {
 
           <div className='mt-6'>
             <nav className='grid grid-cols-1 gap-7'>
-              {[
-                {
-                  label: 'Home',
-                  path: '#',
-                },
-                {
-                  label: 'Blog',
-                  path: '#',
-                },
-                {
-                  label: 'About',
-                  path: '#',
-                },
-                {
-                  label: 'Contact',
-                  path: '#',
-                },
-              ].map(({ label, path }) => (
-                <a
-                  key={`${label}-mobile`}
-                  href={path}
-                  className='flex items-center p-3 -m-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700'
-                >
-                  <div className='ml-4 text-base font-medium text-gray-900 dark:text-gray-50'>
-                    {label}
-                  </div>
-                </a>
+              {NAV_ITEMS.map(({ label, path }) => (
+                <Link key={`${label}-mobile`} href={path}>
+                  <a className='flex items-center p-3 -m-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700'>
+                    <div className='ml-4 text-base font-medium text-gray-900 dark:text-gray-50'>
+                      {label}
+                    </div>
+                  </a>
+                </Link>
               ))}
             </nav>
           </div>

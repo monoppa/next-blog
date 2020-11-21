@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import {} from 'prop-types';
-import MenuIcon from 'components/Icons/MenuIcon';
-
-import MobileMenu from './elements/MobileMenu';
 import { Transition } from '@headlessui/react';
+import Link from 'next/link';
+
+import MenuIcon from 'components/Icons/MenuIcon';
+import MobileMenu from './elements/MobileMenu';
+import NAV_ITEMS from './NAV_ITEMS';
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -43,31 +45,12 @@ const Navbar = () => {
         {/* nav items */}
         <div className='hidden md:flex'>
           <nav className='space-x-10 md:flex'>
-            {[
-              {
-                label: 'Home',
-                path: '#',
-              },
-              {
-                label: 'Blog',
-                path: '#',
-              },
-              {
-                label: 'About',
-                path: '#',
-              },
-              {
-                label: 'Contact',
-                path: '#',
-              },
-            ].map(({ label, path }) => (
-              <a
-                key={label}
-                href={path}
-                className='text-base font-medium text-gray-500 dark:text-gray-50 hover:text-gray-900 dark:hover:text-gray-300'
-              >
-                {label}
-              </a>
+            {NAV_ITEMS.map(({ label, path }) => (
+              <Link key={label} href={path}>
+                <a className='text-base font-medium text-gray-500 dark:text-gray-50 hover:text-gray-900 dark:hover:text-gray-300'>
+                  {label}
+                </a>
+              </Link>
             ))}
           </nav>
         </div>
