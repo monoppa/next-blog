@@ -14,6 +14,7 @@ export const getStaticProps = async ({ params }) => {
   const renderToString = (await import('next-mdx-remote/render-to-string'))
     .default;
   const path = (await import('path')).default;
+  const dayjs = (await import('dayjs')).default;
   const POSTS_PATH = (await import('utils/mdxUtils')).POSTS_PATH;
 
   const postFilePath = path.join(POSTS_PATH, `${params.slug}.mdx`);
@@ -27,6 +28,14 @@ export const getStaticProps = async ({ params }) => {
     Head,
   };
 
+  const { publishDate: publishDateRaw, ...restData } = data;
+
+  const publishDate = dayjs(publishDateRaw).format('MMMM YYYY');
+
+  const stats = readingTime(JSON.stringify(content));
+
+  const frontMatter = { ...restData, publishDate, timeToRead: stats.text };
+
   const mdxSource = await renderToString(content, {
     components,
     // Optionally pass remark/rehype plugins
@@ -34,25 +43,33 @@ export const getStaticProps = async ({ params }) => {
       remarkPlugins: [],
       rehypePlugins: [],
     },
-    scope: data,
+    scope: frontMatter,
   });
-
-  const stats = readingTime(JSON.stringify(mdxSource.renderedOutput));
 
   return {
     props: {
       source: mdxSource,
-      frontMatter: { ...data, timeToRead: stats.text },
+      frontMatter,
     },
   };
 };
 
 export const getStaticPaths = async () => {
+  const path = (await import('path')).default;
+  const matter = (await import('gray-matter')).default;
+  const fs = (await import('fs')).default;
   const postFilePaths = (await import('utils/mdxUtils')).postFilePaths;
+  const POSTS_PATH = (await import('utils/mdxUtils')).POSTS_PATH;
 
   const paths = postFilePaths
     // Remove file extensions for page paths
-    .map((path) => path.replace(/\.mdx?$/, ''))
+    .map((pathItem) => {
+      const postFilePath = path.join(POSTS_PATH, pathItem);
+      const source = fs.readFileSync(postFilePath);
+      const { data } = matter(source);
+
+      return data.slug;
+    })
     // Map the path into the static paths object required by Next.js
     .map((slug) => ({ params: { slug } }));
 

@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import {} from 'prop-types';
+import { string } from 'prop-types';
 import cx from 'classnames';
 import useDebounceCallback from 'hooks/useDebounceCallback';
 
-const BLOG = {
-  title: 'How to dynamically create responsive images with NextJS',
-  publishDate: 'May 2020',
-  timeToRead: 5,
-  description: 'Building a serverless image transformation API with NextJS',
-};
-
-const CardBlog = () => {
-  const { title, publishDate, timeToRead, description } = BLOG;
+const CardBlog = (props) => {
+  const { title, publishDate, timeToRead, description } = props;
   const [hovered, hoveredSet] = useState(false);
 
   const [handleMouseEnter] = useDebounceCallback(
@@ -33,11 +26,12 @@ const CardBlog = () => {
 
   return (
     <div
-      className='flex flex-col md:flex-row'
+      className='flex flex-col items-center md:flex-row'
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div
+        style={{ height: 200 }}
         className={cx({
           ['relative w-full mr-12 transition-all ease-in-out transform rounded md:w-1/2 duration-300']: true,
           ['shadow-2xl scale-105']: hovered,
@@ -85,7 +79,7 @@ const CardBlog = () => {
               {title}
             </h2>
 
-            <time className='text-sm font-medium text-gray-600 opacity-75 dark:text-gray-400'>{`${publishDate} • ${timeToRead} min read`}</time>
+            <time className='text-sm font-medium text-gray-600 opacity-75 dark:text-gray-400'>{`${publishDate} • ${timeToRead}`}</time>
 
             <p className='pt-4 font-light text-gray-700 dark:text-gray-400'>
               {description}
@@ -103,7 +97,12 @@ const CardBlog = () => {
   );
 };
 
-CardBlog.propTypes = {};
+CardBlog.propTypes = {
+  title: string.isRequired,
+  publishDate: string.isRequired,
+  timeToRead: string.isRequired,
+  description: string.isRequired,
+};
 
 CardBlog.defaultProps = {};
 

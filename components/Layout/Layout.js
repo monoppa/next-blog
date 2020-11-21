@@ -1,11 +1,19 @@
-import { node } from 'prop-types';
+import Head from 'next/head';
+import { node, string } from 'prop-types';
 
 import Navbar from 'components/Layout/Navbar';
 import Footer from './Footer';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, pageTitle }) => {
   return (
     <div className='bg-white dark:bg-dim'>
+      <Head>
+        <title>
+          {pageTitle ? `${pageTitle} | ` : ''} monoppa - Blog by Mon Quindoza
+        </title>
+        <link rel='icon' href='/favicon.png' />
+      </Head>
+
       <Navbar />
       <div className='pb-12'>{children}</div>
 
@@ -16,8 +24,11 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: node.isRequired,
+  pageTitle: string,
 };
 
-Layout.defaultProps = {};
+Layout.defaultProps = {
+  pageTitle: '',
+};
 
 export default Layout;
