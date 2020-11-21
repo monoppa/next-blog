@@ -32,7 +32,7 @@ const CardBlog = (props) => {
     >
       <div
         className={cx({
-          ['relative w-auto mr-12 transition-all ease-in-out transform rounded md:w-1/2 duration-300 flex']: true,
+          ['hidden relative w-auto mr-12 transition-all ease-in-out transform rounded md:w-1/2 duration-300 md:flex']: true,
           ['shadow-2xl scale-105']: hovered,
           ['shadow-xl']: !hovered,
         })}
