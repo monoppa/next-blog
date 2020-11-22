@@ -5,10 +5,11 @@ import cx from 'classnames';
 
 const BlogImage = ({ className, height, ...rest }) => {
   return (
-    <div>
-      <div className='relative w-full' style={{ height: `${height || 25}rem` }}>
+    <div className='mb-12'>
+      <div className='relative w-full'>
         <Image
-          layout='fill'
+          width={768}
+          height={height || 512}
           className={cx({
             ['rounded']: true,
             ['object-cover']: !className,
@@ -17,12 +18,6 @@ const BlogImage = ({ className, height, ...rest }) => {
           {...rest}
         />
       </div>
-      <p
-        style={{ marginTop: 2 }}
-        className='text-xs italic text-center text-gray-400'
-      >
-        {rest.alt}
-      </p>
     </div>
   );
 };

@@ -15,19 +15,15 @@ const Navbar = () => {
       <div className='flex items-center justify-between max-w-6xl px-4 py-6 mx-auto border-b border-gray-200 dark:border-gray-700 sm:px-6 md:justify-start md:space-x-10 lg:space-x-0'>
         {/* logo */}
         <div className='flex justify-start lg:w-0 lg:flex-1'>
-          <a href='#'>
-            <span className='sr-only'>monoppa</span>
-            <h1 className='text-2xl tracking-widest'>
-              <span className='text-gray-900 dark:text-gray-50'>mon</span>
-              <span className='text-gray-400 dark:text-gray-400'>oppa</span>
-            </h1>
-            {/* <Image width={112} height={30} src='/blog-logo-dark.png' /> */}
-            {/* <img
-              className='w-auto h-8 sm:h-10'
-              src='https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg'
-              alt=''
-            /> */}
-          </a>
+          <Link href='/'>
+            <a>
+              <span className='sr-only'>monoppa</span>
+              <h1 className='text-2xl tracking-widest'>
+                <span className='text-gray-900 dark:text-gray-50'>mon</span>
+                <span className='text-gray-400 dark:text-gray-400'>oppa</span>
+              </h1>
+            </a>
+          </Link>
         </div>
 
         {/* mobile menu button */}

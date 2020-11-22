@@ -51,8 +51,8 @@ const Blog = (props) => {
 
           <BlogImage
             src={frontMatter.coverImage}
-            layout='fill'
             className='object-cover'
+            height={450}
           />
         </main>
 
