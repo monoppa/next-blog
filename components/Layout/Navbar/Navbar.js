@@ -57,7 +57,7 @@ const Navbar = () => {
       <Transition
         show={showMobileMenu}
         enter='duration-200 ease-out'
-        enterFrom='opacity-0 scale-95'
+        enterFrom='opacity-50 scale-95'
         enterTo='opacity-100 scale-100'
         leave='duration-100 ease-in'
         leaveFrom='opacity-100 scale-100'

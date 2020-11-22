@@ -7,15 +7,21 @@ import NAV_ITEMS from '../NAV_ITEMS';
 const MobileMenu = ({ closeMobileMenu }) => {
   return (
     <div className='absolute inset-x-0 top-0 p-2 transition origin-top-right transform md:hidden'>
-      <div className='bg-white divide-y-2 rounded-lg shadow-lg dark:bg-dim ring-1 ring-black dark:ring-white ring-opacity-5'>
+      <div className='bg-white divide-y-2 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 divide-gray-50'>
         <div className='px-5 pt-5 pb-6'>
           <div className='flex items-center justify-between'>
             <div>
-              <img
-                className='w-auto h-8'
-                src='https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg'
-                alt='Workflow'
-              />
+              <Link href='/'>
+                <a>
+                  <span className='sr-only'>monoppa</span>
+                  <h1 className='text-2xl tracking-widest'>
+                    <span className='text-gray-900 dark:text-gray-50'>mon</span>
+                    <span className='text-gray-400 dark:text-gray-400'>
+                      oppa
+                    </span>
+                  </h1>
+                </a>
+              </Link>
             </div>
 
             <div className='-mr-2'>

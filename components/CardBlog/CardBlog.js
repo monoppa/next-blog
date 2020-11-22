@@ -45,28 +45,6 @@ const CardBlog = (props) => {
         />
       </div>
 
-      {/* <Img
-          className={[
-            'block mr-4 rounded-tr-blog rounded-br-blog rounded-tl-blog shadow-nonde',
-            'lg:hidden md:rounded-tr-sm md:rounded-br-sm md:rounded-tl-sm md:shadow-blog',
-          ].join(' ')}
-          fluid={smCoverImage.childImageSharp.fluid}
-        /> */}
-
-      {/* <div
-          style={{
-            transform: scale.interpolate((scale) => `scale(${scale})`),
-          }}
-        >
-          <Img
-            className={[
-              'hidden lg:block rounded-sm',
-              ...(hovered ? ['shadow-blog-sm'] : ['shadow-blog']),
-            ].join(' ')}
-            fluid={lgCoverImage.childImageSharp.fluid}
-          />
-        </div> */}
-
       <div className='container flex flex-col justify-center w-full max-w-xl md:py-3 md:w-1/2'>
         <div>
           <div className='px-1 pt-8 mb-4 md:pt-0'>
@@ -80,9 +58,9 @@ const CardBlog = (props) => {
               {title}
             </h2>
 
-            <time className='text-sm font-medium text-gray-600 opacity-75 dark:text-gray-400'>{`${publishDate} • ${timeToRead}`}</time>
+            <time className='text-sm font-light text-gray-600 dark:text-gray-400'>{`${publishDate} • ${timeToRead}`}</time>
 
-            <p className='pt-4 font-light text-gray-700 dark:text-gray-400'>
+            <p className='pt-4 font-light tracking-wide text-gray-800 dark:text-gray-400'>
               {description}
             </p>
           </div>
