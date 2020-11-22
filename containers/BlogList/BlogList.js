@@ -1,21 +1,22 @@
 import React from 'react';
 import { arrayOf, shape, string } from 'prop-types';
 import Link from 'next/link';
-import Layout from 'components/Layout';
-import CardBlog from 'components/CardBlog';
-import CustomHead from 'components/CustomHead/CustomHead';
 
-const Home = (props) => {
+import Layout from 'components/Layout';
+import CustomHead from 'components/CustomHead';
+import CardBlog from 'components/CardBlog';
+
+const BlogList = (props) => {
   const { posts } = props;
 
   return (
     <Layout>
-      <CustomHead />
+      <CustomHead pageTitle='Blogs' />
 
       <main className='max-w-6xl px-4 mx-auto sm:px-6'>
         <div className='mt-12'>
           <h2 className='text-xl tracking-tight text-gray-900 dark:text-gray-50 sm:text-2xl'>
-            Latest from the blog
+            All blog posts
           </h2>
 
           <ul className='mt-0 space-y-8 md:mt-8 md:space-y-20'>
@@ -35,7 +36,7 @@ const Home = (props) => {
   );
 };
 
-Home.propTypes = {
+BlogList.propTypes = {
   posts: arrayOf(
     shape({
       title: string.isRequired,
@@ -47,6 +48,6 @@ Home.propTypes = {
   ),
 };
 
-Home.defaultProps = {};
+BlogList.defaultProps = {};
 
-export default Home;
+export default BlogList;

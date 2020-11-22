@@ -6,7 +6,10 @@ const Footer = () => {
     <footer className='max-w-6xl mx-auto bg-white dark:bg-dim'>
       <div className='px-4 py-12 mx-auto max-w-7xl sm:px-6 md:flex md:items-center md:justify-between lg:px-8'>
         <div className='flex justify-center space-x-6 md:order-2'>
-          <a href='#' className='text-gray-400 hover:text-gray-500'>
+          <a
+            href='https://www.instagram.com/monoppa_/'
+            className='text-gray-400 hover:text-gray-500'
+          >
             <span className='sr-only'>Instagram</span>
             <svg
               className='w-6 h-6'
@@ -22,7 +25,10 @@ const Footer = () => {
             </svg>
           </a>
 
-          <a href='#' className='text-gray-400 hover:text-gray-500'>
+          <a
+            href='https://twitter.com/monoppa_'
+            className='text-gray-400 hover:text-gray-500'
+          >
             <span className='sr-only'>Twitter</span>
             <svg
               className='w-6 h-6'
@@ -34,7 +40,10 @@ const Footer = () => {
             </svg>
           </a>
 
-          <a href='#' className='text-gray-400 hover:text-gray-500'>
+          <a
+            href='https://github.com/monoppa'
+            className='text-gray-400 hover:text-gray-500'
+          >
             <span className='sr-only'>GitHub</span>
             <svg
               className='w-6 h-6'
@@ -50,7 +59,10 @@ const Footer = () => {
             </svg>
           </a>
 
-          <a href='#' className='text-gray-400 hover:text-gray-500'>
+          <a
+            href='https://dribbble.com/monoppa'
+            className='text-gray-400 hover:text-gray-500'
+          >
             <span className='sr-only'>Dribbble</span>
             <svg
               className='w-6 h-6'
