@@ -6,17 +6,20 @@ import cx from 'classnames';
 const BlogImage = ({ className, height, ...rest }) => {
   return (
     <div className='mb-12'>
-      <div className='relative w-full'>
+      <div className='relative w-full' style={{ height: height || 350 }}>
         <Image
-          width={768}
-          height={height || 512}
+          layout='fill'
+          // width={768}
+          // height={height || 512}
           className={cx({
-            ['rounded']: true,
-            ['object-cover']: !className,
+            ['rounded z-10']: true,
+            ['object-cover object-center']: !className,
             [className]: !!className,
           })}
           {...rest}
         />
+
+        <div className='absolute top-0 object-cover w-full h-full bg-gray-300 rounded animate-pulse' />
       </div>
     </div>
   );

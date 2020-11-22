@@ -51,8 +51,7 @@ const Blog = (props) => {
 
           <BlogImage
             src={frontMatter.coverImage}
-            className='object-cover'
-            height={450}
+            className='object-cover object-center'
           />
         </main>
 
