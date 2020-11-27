@@ -38,11 +38,18 @@ const CardBlog = (props) => {
         })}
       >
         <Image
-          src={coverImage}
+          src={`data:image/jpg;base64, ${coverImage}`}
+          alt={props.title}
           className='flex-1 object-cover rounded'
           width={528}
           height={200}
         />
+        {/* <img
+          src={props.tImage}
+          className='flex-1 object-cover rounded'
+          width={528}
+          height={200}
+        /> */}
       </div>
 
       <div className='container flex flex-col justify-center w-full max-w-xl md:py-3 md:w-1/2'>

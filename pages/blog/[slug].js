@@ -34,7 +34,22 @@ export const getStaticProps = async ({ params }) => {
 
   const stats = readingTime(JSON.stringify(content));
 
-  const frontMatter = { ...restData, publishDate, timeToRead: stats.text };
+  const sharp = (await import('sharp')).default;
+  const publicDir = path.join(process.cwd(), 'public');
+
+  const transform = await sharp(publicDir + data.coverImage)
+    .resize(650, 350)
+    .jpeg({ progressive: true })
+    .toBuffer();
+
+  const coverImage = transform.toString('base64');
+
+  const frontMatter = {
+    ...restData,
+    publishDate,
+    timeToRead: stats.text,
+    coverImage,
+  };
 
   const mdxSource = await renderToString(content, {
     components,
@@ -62,7 +77,6 @@ export const getStaticPaths = async () => {
   const POSTS_PATH = (await import('utils/mdxUtils')).POSTS_PATH;
 
   const paths = postFilePaths
-    // Remove file extensions for page paths
     .map((pathItem) => {
       const postFilePath = path.join(POSTS_PATH, pathItem);
       const source = fs.readFileSync(postFilePath);

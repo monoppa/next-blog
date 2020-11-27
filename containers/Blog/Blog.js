@@ -50,8 +50,9 @@ const Blog = (props) => {
           <div className='h-6' />
 
           <BlogImage
-            src={frontMatter.coverImage}
-            className='object-cover object-center'
+            src={`data:image/jpg;base64, ${frontMatter.coverImage}`}
+            alt={frontMatter.title}
+            className='flex-1 object-cover rounded'
           />
         </main>
 
