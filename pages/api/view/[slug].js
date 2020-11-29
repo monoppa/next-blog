@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
+import to from 'await-to-js';
 
-export default (req, res) => {
+export default async (req, res) => {
   const firebasePrivateKey = process.env.FIREBASE_PRIVATE_KEY;
 
   if (!admin.apps.length) {
@@ -29,23 +30,22 @@ export default (req, res) => {
   const blogRef = db.collection('blog-posts').doc(slug);
   console.log('blogRef', blogRef);
 
-  blogRef
-    .get()
-    .then((snapshot) => {
-      console.log('snapshot.exists', snapshot.exists);
+  const [error, snapshot] = await to(blogRef.get());
 
-      if (snapshot.exists) {
-        const blog = snapshot.data();
-        console.log('blog', blog);
-        blogRef.update({ views: blog.views + 1 });
-      } else {
-        console.log('not found');
-        blogRef.set({ views: 1 });
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  if (error) {
+    res.statusCode = 500;
+    res.send('Internal server error');
+  }
+
+  console.log('snapshot.exists', snapshot.exists);
+  if (snapshot.exists) {
+    const blog = snapshot.data();
+    console.log('blog', blog);
+    blogRef.update({ views: blog.views + 1 });
+  } else {
+    console.log('not found');
+    blogRef.set({ views: 1 });
+  }
 
   res.statusCode = 200;
   res.send('Success');
