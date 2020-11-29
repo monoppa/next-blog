@@ -18,7 +18,7 @@ const Home = (props) => {
             Latest from the blog
           </h2>
 
-          <ul className='mt-0 space-y-8 md:mt-8 md:space-y-20'>
+          <ul className='mt-0 space-y-8 divide-y divide-gray-100 md:mt-8 md:space-y-20 md:divide-transparent'>
             {posts.map((post) => (
               <li key={post.title}>
                 <Link href={`/blog/${post.slug}`}>

@@ -1,11 +1,32 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
 import Blog from 'containers/Blog';
 import BlogImage from 'components/BlogImage';
 import CustomLink from 'components/CustomLink';
+import { object } from 'prop-types';
 
 export default function BlogPage(props) {
+  useEffect(() => {
+    const viewCache = window.localStorage.getItem(`${props.frontMatter.slug}`);
+
+    const isViewed = viewCache === 'ok';
+    if (!isViewed) {
+      fetch(`/api/view/${props.frontMatter.slug}`)
+        .then(() => {
+          window.localStorage.setItem(`${props.frontMatter.slug}`, 'ok');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [props.frontMatter.slug]);
+
   return <Blog {...props} />;
 }
+
+BlogPage.propTypes = {
+  frontMatter: object.isRequired,
+};
 
 export const getStaticProps = async ({ params }) => {
   const fs = (await import('fs')).default;

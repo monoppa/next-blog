@@ -57,7 +57,7 @@ const CardBlog = (props) => {
           <div className='px-1 pt-8 mb-4 md:pt-0'>
             <h2
               className={cx({
-                ['text-2xl font-medium']: true,
+                ['text-2xl font-bold']: true,
                 ['text-violet-600']: hovered,
                 ['text-gray-900 dark:text-gray-200']: !hovered,
               })}
