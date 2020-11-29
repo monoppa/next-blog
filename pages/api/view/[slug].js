@@ -16,7 +16,7 @@ export default async (req, res) => {
     });
   }
 
-  console.log('admin.apps', admin.apps);
+  console.log('admin.apps', admin.apps.length);
 
   const { slug } = req.query;
   console.log('slug', slug);
