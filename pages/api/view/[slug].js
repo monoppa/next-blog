@@ -15,6 +15,8 @@ export default (req, res) => {
     });
   }
 
+  console.log('admin.apps', admin.apps);
+
   const { slug } = req.query;
   console.log('slug', slug);
 
@@ -25,6 +27,7 @@ export default (req, res) => {
 
   const db = admin.firestore();
   const blogRef = db.collection('blog-posts').doc(slug);
+  console.log('blogRef', blogRef);
 
   blogRef
     .get()
