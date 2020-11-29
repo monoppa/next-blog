@@ -16,6 +16,7 @@ export default (req, res) => {
   }
 
   const { slug } = req.query;
+  console.log('slug', slug);
 
   if (!slug) {
     res.statusCode = 200;
@@ -28,10 +29,14 @@ export default (req, res) => {
   blogRef
     .get()
     .then((snapshot) => {
+      console.log('snapshot.exists', snapshot.exists);
+
       if (snapshot.exists) {
         const blog = snapshot.data();
+        console.log('blog', blog);
         blogRef.update({ views: blog.views + 1 });
       } else {
+        console.log('not found');
         blogRef.set({ views: 1 });
       }
     })
