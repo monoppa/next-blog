@@ -19,7 +19,7 @@ const BlogList = (props) => {
             All blog posts
           </h2>
 
-          <ul className='mt-0 space-y-8 md:mt-8 md:space-y-20'>
+          <ul className='mt-0 space-y-8 md:mt-8 md:space-y-12'>
             {posts.map((post) => (
               <li key={post.title}>
                 <Link href={`/blog/${post.slug}`}>

@@ -43,10 +43,12 @@ export async function getStaticProps() {
     });
   });
 
-  const posts = postsMap.sort(
+  const postSort = postsMap.sort(
     (post1, post2) =>
       dayjs(post2.publishDateString) - dayjs(post1.publishDateString)
   );
+
+  const posts = postSort.splice(0, 2);
 
   return { props: { posts } };
 }
