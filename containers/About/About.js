@@ -12,14 +12,14 @@ const About = () => {
     <Layout>
       <CustomHead pageTitle='About' />
 
-      <div className='overflow-hidden bg-white'>
+      <div className='overflow-hidden bg-white dark:bg-dim'>
         <div className='relative max-w-6xl px-4 py-16 mx-auto sm:px-6 lg:px-8'>
-          <div className='absolute top-0 bottom-0 hidden w-screen lg:block bg-gray-50 left-3/4'></div>
+          <div className='absolute top-0 bottom-0 hidden w-screen lg:block bg-gray-50 dark:bg-dim left-3/4'></div>
           <div className='mx-auto text-base max-w-prose lg:max-w-none'>
             <h2 className='text-base font-semibold tracking-wide uppercase text-primary-600'>
               About the author
             </h2>
-            <h3 className='mt-2 text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl'>
+            <h3 className='mt-2 text-3xl font-extrabold leading-8 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl'>
               Meet Mon
             </h3>
           </div>
@@ -47,9 +47,8 @@ const About = () => {
                     /> */}
                   </div>
 
-                  <figcaption className='flex mt-3 text-sm text-gray-500'>
-                    {/* <!-- Heroicon name: camera --> */}
-                    <LocationIconSm className='flex-none w-5 h-5 text-gray-400' />
+                  <figcaption className='flex mt-3 text-sm text-gray-500 dark:text-gray-300'>
+                    <LocationIconSm className='flex-none w-5 h-5 text-gray-400 dark:text-gray-200' />
 
                     <span className='ml-2'>Boracay, PH</span>
                   </figcaption>
@@ -59,13 +58,14 @@ const About = () => {
 
             <div className='mt-8 lg:mt-0'>
               <div className='mx-auto text-base max-w-prose lg:max-w-none'>
-                <p className='text-lg text-gray-500'>
+                <p className='text-lg text-gray-500 dark:text-gray-100'>
                   Sagittis scelerisque nulla cursus in enim consectetur quam.
                   Dictum urna sed consectetur neque tristique pellentesque.
                   Blandit amet, sed aenean erat arcu morbi.
                 </p>
               </div>
-              <div className='mx-auto mt-5 prose text-gray-500 lg:max-w-none lg:row-start-1 lg:col-start-1 prose-primary'>
+
+              <div className='mx-auto mt-5 prose text-gray-500 dark:text-gray-100 lg:max-w-none lg:row-start-1 lg:col-start-1 prose-primary'>
                 <p>
                   Sollicitudin tristique eros erat odio sed vitae, consequat
                   turpis elementum. Lorem nibh vel, eget pretium arcu vitae.

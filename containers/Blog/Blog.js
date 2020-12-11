@@ -27,7 +27,7 @@ const Blog = (props) => {
       />
 
       <div className='max-w-6xl px-4 mx-auto mt-20 post-header lg:px-0'>
-        <main className='mx-auto mb-12 prose lg:prose-lg'>
+        <main className='mx-auto mb-12 prose lg:prose-lg dark:prose-dark dark:lg:prose-lg-dark'>
           <h1 style={{ marginBottom: 16 }}>{frontMatter.title}</h1>
 
           <div className='flex'>
@@ -56,7 +56,9 @@ const Blog = (props) => {
           />
         </main>
 
-        <article className='mx-auto prose lg:prose-lg'>{content}</article>
+        <article className='mx-auto prose lg:prose-lg dark:prose-dark dark:lg:prose-lg-dark'>
+          {content}
+        </article>
       </div>
     </Layout>
   );

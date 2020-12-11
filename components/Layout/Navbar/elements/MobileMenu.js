@@ -7,7 +7,7 @@ import NAV_ITEMS from '../NAV_ITEMS';
 const MobileMenu = ({ closeMobileMenu }) => {
   return (
     <div className='absolute inset-x-0 top-0 p-2 transition origin-top-right transform md:hidden'>
-      <div className='bg-white divide-y-2 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 divide-gray-50'>
+      <div className='bg-white border border-transparent divide-y-2 rounded-lg shadow-lg dark:bg-dim ring-1 ring-black ring-opacity-5 divide-gray-50 dark:border-gray-800'>
         <div className='px-5 pt-5 pb-6'>
           <div className='flex items-center justify-between'>
             <div>
