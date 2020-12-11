@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Layout from 'components/Layout';
 import CardBlog from 'components/CardBlog';
 import CustomHead from 'components/CustomHead/CustomHead';
+import Playlists from './sections/Playlists';
 
 const Home = (props) => {
   const { posts } = props;
@@ -18,7 +19,7 @@ const Home = (props) => {
             Latest from the blog
           </h2>
 
-          <ul className='mt-0 mb-6 space-y-8 divide-y divide-gray-100 md:mt-8 md:space-y-12 md:divide-transparent'>
+          <ul className='mt-0 mb-8 space-y-8 divide-y divide-gray-100 dark:divide-gray-800 md:mt-8 md:space-y-12 md:divide-transparent'>
             {posts.map((post) => (
               <li key={post.title}>
                 <Link href={`/blog/${post.slug}`}>
@@ -39,6 +40,10 @@ const Home = (props) => {
           </Link>
         </div>
       </main>
+
+      <section className='max-w-6xl px-4 py-16 mx-auto sm:px-6'>
+        <Playlists />
+      </section>
     </Layout>
   );
 };
