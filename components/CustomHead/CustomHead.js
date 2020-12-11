@@ -18,7 +18,7 @@ const CustomHead = ({ children, pageTitle, description, ogImage }) => {
 
       <meta property='og:title' content={title} />
       <meta property='og:description' content={desc} />
-      <meta property='og:image' content={ogImage || '/opengraph.png'} />
+      <meta property='og:image' content={ogImage || '/opengraph-2.png'} />
       <meta property='og:url' content='https://monoppa.com/' />
       <meta
         name='keywords'
