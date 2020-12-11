@@ -5,7 +5,7 @@ import Image from 'next/image';
 const PlaylistCard = (props) => {
   return (
     <div className='flex py-4'>
-      <div className='flex items-center mr-3 lg:mr-6'>
+      <div className='flex items-center flex-shrink-0 mr-3 lg:mr-6'>
         <Image
           src={props.image}
           width={100}

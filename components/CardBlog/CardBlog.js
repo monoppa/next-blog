@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { string } from 'prop-types';
 import cx from 'classnames';
 import useDebounceCallback from 'hooks/useDebounceCallback';
+import useWindowSize from 'hooks/useWindowSize';
 
 const CardBlog = (props) => {
   const { title, publishDate, timeToRead, description, coverImage } = props;
@@ -24,6 +25,8 @@ const CardBlog = (props) => {
     { leading: true }
   );
 
+  const [windowWidth] = useWindowSize();
+
   return (
     <div
       className='flex flex-col items-center md:flex-row'
@@ -37,13 +40,15 @@ const CardBlog = (props) => {
           ['shadow-xl']: !hovered,
         })}
       >
-        <Image
-          src={`data:image/jpg;base64, ${coverImage}`}
-          alt={props.title}
-          className='flex-1 object-cover rounded'
-          width={528}
-          height={200}
-        />
+        {windowWidth >= 768 && (
+          <Image
+            src={`data:image/jpg;base64, ${coverImage}`}
+            alt={props.title}
+            className='flex-1 object-cover rounded'
+            width={528}
+            height={200}
+          />
+        )}
         {/* <img
           src={props.tImage}
           className='flex-1 object-cover rounded'

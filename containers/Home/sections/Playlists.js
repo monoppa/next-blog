@@ -6,7 +6,7 @@ import Link from 'next/link';
 const data = [
   {
     title: 'Thedas',
-    description: 'Soundtrack collection from games and movies',
+    description: 'Collection from games and movies',
     image: '/playlist/thedas.jpg',
     link:
       'https://open.spotify.com/playlist/3J5SVlq1KW4Sa96Uxcw8zg?si=csWSRkQ6R8qIXj0YhYMTtQ',
@@ -20,7 +20,7 @@ const data = [
   },
   {
     title: 'Tokyo',
-    description: 'Soundtrack collection from anime',
+    description: 'Collection from anime',
     image: '/playlist/tokyo.jpg',
     link:
       'https://open.spotify.com/playlist/2MvVMXAqMkMldTvHafBk5S?si=POLtvW0tQAOe4GIE6pWhmA',
