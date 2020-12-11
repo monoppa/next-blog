@@ -27,10 +27,13 @@ const CustomHead = ({ children, pageTitle, description }) => {
         name='keywords'
         content='mon, oppa, monoppa, blog, startup, manila, makati, quezon, Philippines react, react.js, reactjs, javascript, software, developer, engineer, tech, technology, code, coding, next, next.js, nextjs'
       />
-      <meta name='twitter:card' content='summary_large_image' />
 
       <meta property='og:site_name' content='monoppa - Blog by Mon Quindoza' />
+
+      <meta name='twitter:card' content='summary' />
       <meta name='twitter:image:alt' content='Blog by Mon Quindoza' />
+      <meta name='twitter:site' content='@monoppa_' />
+      <meta name='twitter:creator' content='@monoppa_' />
 
       {/* <meta property='fb:app_id' content='your_app_id' />
       <meta name='twitter:site' content='@website-username' /> */}
