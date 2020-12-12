@@ -27,7 +27,7 @@ const data = [
   },
   {
     title: 'Amsterdam',
-    description: `Makes me want to break bad`,
+    description: `Makes me want to go breaking bad`,
     image: '/playlist/amsterdam.jpg',
     link:
       'https://open.spotify.com/playlist/5rxbIZjkdKxuXQEWQyBNyf?si=YLjqzdchQHiUBrn1Ingebg',
