@@ -1,5 +1,5 @@
-import * as admin from 'firebase-admin';
 import to from 'await-to-js';
+import * as admin from 'firebase-admin';
 import initFirebaseAdmin from 'utils/initFirebaseAdmin';
 
 export default async (req, res) => {
@@ -8,8 +8,8 @@ export default async (req, res) => {
   const { slug } = req.query;
 
   if (!slug) {
-    res.statusCode = 200;
-    res.send('Missing slug');
+    res.statusCode = 400;
+    res.send('Missing blog slug');
   }
 
   const db = admin.firestore();
@@ -25,11 +25,12 @@ export default async (req, res) => {
 
   if (snapshot.exists) {
     const blog = snapshot.data();
-    blogRef.update({ views: blog.views + 1 });
-  } else {
-    blogRef.set({ views: 1 });
+
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ views: blog.views }));
+    return;
   }
 
-  res.statusCode = 200;
-  res.send('Success');
+  res.statusCode = 400;
+  res.send('Unhandled error');
 };

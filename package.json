@@ -27,6 +27,7 @@
     "firebase": "^8.1.1",
     "firebase-admin": "^9.4.1",
     "gray-matter": "^4.0.2",
+    "isomorphic-unfetch": "^3.1.0",
     "next": "10.0.2",
     "next-mdx-remote": "^1.0.0",
     "next-remote-watch": "^0.2.0",

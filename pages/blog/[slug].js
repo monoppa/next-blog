@@ -4,6 +4,7 @@ import Blog from 'containers/Blog';
 import BlogImage from 'components/BlogImage';
 import CustomLink from 'components/CustomLink';
 import { object } from 'prop-types';
+import to from 'await-to-js';
 
 export default function BlogPage(props) {
   useEffect(() => {
@@ -82,10 +83,38 @@ export const getStaticProps = async ({ params }) => {
     scope: frontMatter,
   });
 
+  // get views
+  const fetch = (await import('isomorphic-unfetch')).default;
+  const absoluteUrl =
+    process.env.NODE_ENV === 'production'
+      ? 'https://monoppa.com'
+      : 'http://localhost:3000';
+
+  const [errorGetViews, resGetViews] = await to(
+    fetch(`${absoluteUrl}/api/getViews/${frontMatter.slug}`)
+  );
+
+  if (errorGetViews) {
+    return {
+      props: {
+        source: mdxSource,
+        frontMatter,
+      },
+    };
+  }
+
+  const [errorResGetViews, result] = await to(resGetViews.json());
+  console.log(
+    'file: [slug].js - line 107 - errorResGetViews',
+    errorResGetViews
+  );
+
+  const views = result?.views || 0;
+
   return {
     props: {
       source: mdxSource,
-      frontMatter,
+      frontMatter: { ...frontMatter, views },
     },
   };
 };
