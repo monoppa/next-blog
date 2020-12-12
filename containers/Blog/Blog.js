@@ -2,7 +2,7 @@ import React from 'react';
 import { shape, string } from 'prop-types';
 import Head from 'next/head';
 import hydrate from 'next-mdx-remote/hydrate';
-
+import useSWR from 'swr';
 import Layout from 'components/Layout';
 import BlogImage from 'components/BlogImage';
 import CustomLink from 'components/CustomLink';
@@ -18,6 +18,9 @@ const components = {
 const Blog = (props) => {
   const { frontMatter } = props;
   const content = hydrate(props.source, { components });
+  const { data } = useSWR(`/api/getViews/${props.frontMatter.slug}`, (url) =>
+    fetch(url).then((r) => r.json())
+  );
 
   return (
     <Layout>
@@ -48,9 +51,9 @@ const Blog = (props) => {
               </p>
             </div>
 
-            {!!props.frontMatter.views && (
+            {!!data?.views && (
               <div className='flex items-center text-gray-500'>
-                <span>{props.frontMatter.views}</span>
+                <span>{data.views}</span>
                 &nbsp;
                 <span>views</span>
               </div>
