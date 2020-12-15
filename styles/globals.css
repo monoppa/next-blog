@@ -3,3 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button-interactive:focus:active {
+  @apply transition duration-150 ease-in-out transform translate-y-1;
+}
