@@ -6,11 +6,42 @@ import Layout from 'components/Layout';
 import CustomHead from 'components/CustomHead';
 import SingleDotPattern from 'components/DotPattern/SingleDotPattern';
 import LocationIconSm from 'components/Icons/LocationIconSm';
+import Link from 'next/link';
+
+const timeline2020 = [
+  {
+    title: 'Torabel - new project',
+    desc: `I am working on something I can call my own. Excited to
+see how this project will evolve.`,
+  },
+  {
+    title: 'Bought a piano',
+    desc: `I am so into Debussy's music so I decided to learn to play the piano.`,
+  },
+];
+
+const timeline2019 = [
+  {
+    title: 'Joined Innovation Love',
+    desc: `Joined the team behind OLX.ph, one of the biggest online marketplace during its time.`,
+  },
+];
+
+const timeline2018 = [
+  {
+    title: 'Start a blog',
+    desc: `I started to write on Medium.com, later on the blog is re-branded to monoppa.com`,
+  },
+  {
+    title: 'Work with startup companies',
+    desc: `The year I quit my job and decided to have a taste what it's like working with startups`,
+  },
+];
 
 const About = () => {
   return (
     <Layout>
-      <CustomHead pageTitle='About' />
+      <CustomHead pageTitle='About Me' />
 
       <div className='overflow-hidden bg-white dark:bg-dim'>
         <div className='relative max-w-6xl px-4 py-16 mx-auto sm:px-6 lg:px-8'>
@@ -58,57 +89,67 @@ const About = () => {
 
             <div className='mt-8 lg:mt-0'>
               <div className='mx-auto text-base max-w-prose lg:max-w-none'>
-                <p className='text-lg text-gray-500 dark:text-gray-100'>
-                  Sagittis scelerisque nulla cursus in enim consectetur quam.
-                  Dictum urna sed consectetur neque tristique pellentesque.
-                  Blandit amet, sed aenean erat arcu morbi.
+                <p className='text-lg tracking-wide text-gray-700 dark:text-gray-100'>
+                  <span>{`Hey! My friends call me Mon. I'm a developer. Sometimes I am a UI designer and a writer. I am currently working on a project called`}</span>
+                  &nbsp;
+                  <span>
+                    <Link href='https://torabel.com/'>
+                      <a className='border-b border-gray-700 dark:border-gray-100'>
+                        Torabel.
+                      </a>
+                    </Link>
+                  </span>
                 </p>
               </div>
 
-              <div className='mx-auto mt-5 prose text-gray-500 dark:text-gray-100 lg:max-w-none lg:row-start-1 lg:col-start-1 prose-primary'>
+              <div className='mx-auto mt-5 text-base tracking-wide prose text-gray-700 dark:prose-dark dark:text-gray-200 lg:max-w-none lg:row-start-1 lg:col-start-1'>
                 <p>
-                  Sollicitudin tristique eros erat odio sed vitae, consequat
-                  turpis elementum. Lorem nibh vel, eget pretium arcu vitae.
-                  Eros eu viverra donec ut volutpat donec laoreet quam urna.
+                  I grew up in a small town in the Philippines, and went to a
+                  school called Mapua University, graduating with a degree in
+                  Computer Engineering.
                 </p>
                 <p>
-                  Bibendum eu nulla feugiat justo, elit adipiscing. Ut tristique
-                  sit nisi lorem pulvinar. Urna, laoreet fusce nibh leo. Dictum
-                  et et et sit. Faucibus sed non gravida lectus dignissim
-                  imperdiet a.
-                </p>
-                <p>
-                  Dictum magnis risus phasellus vitae quam morbi. Quis lorem
-                  lorem arcu, metus, egestas netus cursus. In.
-                </p>
-                <ul>
-                  <li>Quis elit egestas venenatis mattis dignissim.</li>
-                  <li>
-                    Cras cras lobortis vitae vivamus ultricies facilisis tempus.
-                  </li>
-                  <li>Orci in sit morbi dignissim metus diam arcu pretium.</li>
-                </ul>
-                <p>
-                  Rhoncus nisl, libero egestas diam fermentum dui. At quis
-                  tincidunt vel ultricies. Vulputate aliquet velit faucibus
-                  semper. Pellentesque in venenatis vestibulum consectetur nibh
-                  id. In id ut tempus egestas. Enim sit aliquam nec, a. Morbi
-                  enim fermentum lacus in. Viverra.
+                  I spend my free time swimming and running. I am currently
+                  learning to play the piano.
                 </p>
 
-                <h3>Career</h3>
-                <p>
-                  Tincidunt integer commodo, cursus etiam aliquam neque, et.
-                  Consectetur pretium in volutpat, diam. Montes, magna cursus
-                  nulla feugiat dignissim id lobortis amet. Laoreet sem est
-                  phasellus eu proin massa, lectus. Diam rutrum posuere donec
-                  ultricies non morbi. Mi a platea auctor mi.
-                </p>
-                <p>
-                  Sagittis scelerisque nulla cursus in enim consectetur quam.
-                  Dictum urna sed consectetur neque tristique pellentesque.
-                  Blandit amet, sed aenean erat arcu morbi.
-                </p>
+                <h2>Timeline</h2>
+
+                <h4>2020</h4>
+                <ul>
+                  {timeline2020.map(({ title, desc }) => (
+                    <li key={title}>
+                      <div className='mb-2 font-bold'>{title}</div>
+                      <div className='text-gray-500 dark:text-gray-300'>
+                        {desc}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+
+                <h4>2019</h4>
+                <ul>
+                  {timeline2019.map(({ title, desc }) => (
+                    <li key={title}>
+                      <div className='mb-2 font-bold'>{title}</div>
+                      <div className='text-gray-500 dark:text-gray-300'>
+                        {desc}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+
+                <h4>2018</h4>
+                <ul>
+                  {timeline2018.map(({ title, desc }) => (
+                    <li key={title}>
+                      <div className='mb-2 font-bold'>{title}</div>
+                      <div className='text-gray-500 dark:text-gray-300'>
+                        {desc}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
