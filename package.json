@@ -8,15 +8,6 @@
     "build": "next build",
     "start": "next start"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --fix",
-    "*.{js,css,md}": "prettier --write"
-  },
   "dependencies": {
     "@headlessui/react": "^0.3.1",
     "@tailwindcss/aspect-ratio": "^0.2.0",
@@ -36,7 +27,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "reading-time": "^1.2.0",
-    "sharp": "^0.26.3",
+    "sharp": "^0.27.2",
     "swr": "^0.4.2",
     "tailwindcss": "^2.0.3"
   },
