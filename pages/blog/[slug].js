@@ -74,10 +74,10 @@ export const getStaticProps = async ({ params }) => {
 
   const mdxSource = await renderToString(content, {
     components,
-    // Optionally pass remark/rehype plugins
+    // Optionally pass remark/rmxehype plugins
     mdxOptions: {
       remarkPlugins: [],
-      rehypePlugins: [],
+      rehypePlugins: [require('@mapbox/rehype-prism')],
     },
     scope: frontMatter,
   });

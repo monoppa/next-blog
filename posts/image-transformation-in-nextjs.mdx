@@ -50,7 +50,7 @@ touch pages/api/image/[...slug].js
 
 We have just created our API route.
 
-```
+```bash
 /api/image/[...slug]
 ```
 
@@ -79,7 +79,7 @@ export default async (request, response) => {
 
 Now try to access this path,
 
-```
+```bash
 /api/image/w=800&h=800/https%3A%2F%2Fsource.unsplash.com%2F1Shk_PkNkNw%2F1600x900
 ```
 
@@ -107,7 +107,7 @@ The URL that you have just accessed is our final API path.
 
 # Step 4: Parsing our options parameters
 
-On our `api/image/[...slug].js` file, copy the code below to parse our _options_ parameter. Parsing our _options_ parameter only means we are formatting the data to a shape we need.
+On our api/image/[...slug].js file, copy the code below to parse our _options_ parameter. Parsing our _options_ parameter only means we are formatting the data to a shape we need.
 
 ```js
 // Convert option in a string format to a key-value pair
@@ -212,7 +212,7 @@ export default async (request, response) => {
 
 Now if we access our image API we should see an image with 800x800 dimension
 
-```
+```bash
 /api/image/w=800&h=800/https%3A%2F%2Fsource.unsplash.com%2F1Shk_PkNkNw%2F1600x900
 ```
 
