@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { node, string } from 'prop-types';
 
-const CustomHead = ({ children, pageTitle, description, ogImage }) => {
+const CustomHead = ({ children, pageTitle, description, ogImage, ogUrl }) => {
   const title = `${
     pageTitle ? `${pageTitle} |` : ''
   } monoppa - Blog by Mon Quindoza`;
@@ -22,11 +22,17 @@ const CustomHead = ({ children, pageTitle, description, ogImage }) => {
         name='image'
         property='og:image'
         content={
-          `https://monoppa.com${ogImage}` ||
-          'https://firebasestorage.googleapis.com/v0/b/travy-staging.appspot.com/o/opengraph-3.png?alt=media'
+          ogImage
+            ? `https://monoppa.com${ogImage}`
+            : 'https://firebasestorage.googleapis.com/v0/b/travy-staging.appspot.com/o/opengraph-3.png?alt=media'
         }
       />
-      <meta property='og:url' content='https://monoppa.com/' />
+      <meta
+        property='og:url'
+        content={
+          ogUrl ? `https://monoppa.com/${ogUrl}` : 'https://monoppa.com/'
+        }
+      />
       <meta
         name='keywords'
         content='mon, oppa, monoppa, blog, startup, manila, makati, quezon, Philippines react, react.js, reactjs, javascript, software, developer, engineer, tech, technology, code, coding, next, next.js, nextjs'
@@ -52,6 +58,7 @@ CustomHead.propTypes = {
   pageTitle: string,
   description: string,
   ogImage: string,
+  ogUrl: string,
 };
 
 CustomHead.defaultProps = {
@@ -59,6 +66,7 @@ CustomHead.defaultProps = {
   pageTitle: '',
   description: '',
   ogImage: '',
+  ogUrl: '',
 };
 
 export default CustomHead;

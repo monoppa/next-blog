@@ -17,7 +17,6 @@ const components = {
 
 const Blog = (props) => {
   const { frontMatter } = props;
-  console.log('frontMatter', frontMatter);
   const content = hydrate(props.source, { components });
   const { data } = useSWR(`/api/getViews/${props.frontMatter.slug}`, (url) =>
     fetch(url).then((r) => r.json())
@@ -29,6 +28,7 @@ const Blog = (props) => {
         pageTitle={frontMatter.title}
         description={frontMatter.description}
         ogImage={frontMatter.coverImage}
+        ogUrl={`blog/${frontMatter.slug}`}
       />
 
       <div className='max-w-6xl px-4 mx-auto mt-20 post-header lg:px-0'>
