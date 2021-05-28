@@ -55,22 +55,24 @@ export const getStaticProps = async ({ params }) => {
 
   const stats = readingTime(JSON.stringify(content));
 
-  const sharp = (await import('sharp')).default;
-  const publicDir = path.join(process.cwd(), 'public');
+  const frontMatter = { ...restData, publishDate, timeToRead: stats.text };
 
-  const transform = await sharp(publicDir + data.coverImage)
-    .resize(650, 350)
-    .jpeg({ progressive: true })
-    .toBuffer();
+  // const sharp = (await import('sharp')).default;
+  // const publicDir = path.join(process.cwd(), 'public');
 
-  const coverImage = transform.toString('base64');
+  // const transform = await sharp(publicDir + data.coverImage)
+  //   .resize(650, 350)
+  //   .jpeg({ progressive: true })
+  //   .toBuffer();
 
-  const frontMatter = {
-    ...restData,
-    publishDate,
-    timeToRead: stats.text,
-    coverImage,
-  };
+  // const coverImage = transform.toString('base64');
+
+  // const frontMatter = {
+  //   ...restData,
+  //   publishDate,
+  //   timeToRead: stats.text,
+  //   coverImage,
+  // };
 
   const mdxSource = await renderToString(content, {
     components,

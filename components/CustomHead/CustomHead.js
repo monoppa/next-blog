@@ -22,7 +22,7 @@ const CustomHead = ({ children, pageTitle, description, ogImage }) => {
         name='image'
         property='og:image'
         content={
-          `data:image/jpg;base64, ${ogImage}` ||
+          ogImage ||
           'https://firebasestorage.googleapis.com/v0/b/travy-staging.appspot.com/o/opengraph-3.png?alt=media'
         }
       />

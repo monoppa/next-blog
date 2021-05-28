@@ -17,6 +17,7 @@ const components = {
 
 const Blog = (props) => {
   const { frontMatter } = props;
+  console.log('frontMatter', frontMatter);
   const content = hydrate(props.source, { components });
   const { data } = useSWR(`/api/getViews/${props.frontMatter.slug}`, (url) =>
     fetch(url).then((r) => r.json())
@@ -64,10 +65,15 @@ const Blog = (props) => {
           <div className='h-6' />
 
           <BlogImage
+            src={frontMatter.coverImage}
+            className='object-cover object-center'
+          />
+
+          {/* <BlogImage
             src={`data:image/jpg;base64, ${frontMatter.coverImage}`}
             alt={frontMatter.title}
             className='flex-1 object-cover rounded'
-          />
+          /> */}
         </main>
 
         <article className='mx-auto prose lg:prose-lg dark:prose-dark dark:lg:prose-lg-dark'>
