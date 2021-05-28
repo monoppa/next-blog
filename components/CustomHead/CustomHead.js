@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { node, string } from 'prop-types';
 
-const CustomHead = ({ children, pageTitle, description }) => {
+const CustomHead = ({ children, pageTitle, description, ogImage }) => {
   const title = `${
     pageTitle ? `${pageTitle} |` : ''
   } monoppa - Blog by Mon Quindoza`;
@@ -19,8 +19,12 @@ const CustomHead = ({ children, pageTitle, description }) => {
       <meta property='og:title' content={title} />
       <meta property='og:description' content={desc} />
       <meta
+        name='image'
         property='og:image'
-        content='https://firebasestorage.googleapis.com/v0/b/travy-staging.appspot.com/o/opengraph-3.png?alt=media'
+        content={
+          ogImage ||
+          'https://firebasestorage.googleapis.com/v0/b/travy-staging.appspot.com/o/opengraph-3.png?alt=media'
+        }
       />
       <meta property='og:url' content='https://monoppa.com/' />
       <meta

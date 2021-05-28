@@ -27,6 +27,7 @@ const Blog = (props) => {
       <CustomHead
         pageTitle={frontMatter.title}
         description={frontMatter.description}
+        ogImage={frontMatter.coverImage}
       />
 
       <div className='max-w-6xl px-4 mx-auto mt-20 post-header lg:px-0'>
