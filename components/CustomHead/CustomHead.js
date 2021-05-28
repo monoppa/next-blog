@@ -21,10 +21,11 @@ const CustomHead = ({ children, pageTitle, description, ogImage }) => {
       <meta
         name='image'
         property='og:image'
-        content={
-          ogImage ||
-          'https://firebasestorage.googleapis.com/v0/b/travy-staging.appspot.com/o/opengraph-3.png?alt=media'
-        }
+        content={ogImage}
+        // content={
+        //   ogImage ||
+        //   'https://firebasestorage.googleapis.com/v0/b/travy-staging.appspot.com/o/opengraph-3.png?alt=media'
+        // }
       />
       <meta property='og:url' content='https://monoppa.com/' />
       <meta
