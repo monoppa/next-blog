@@ -95,7 +95,7 @@ const About = () => {
             </div>
 
             <div className='mt-8 lg:mt-0'>
-              <div className='mx-auto text-base max-w-prose lg:max-w-none'>
+              <div className='mx-auto space-y-4 text-base max-w-prose lg:max-w-none'>
                 <p className='text-lg tracking-wide text-gray-700 dark:text-gray-100'>
                   <span>{`Hey! My friends call me Mon. I'm a developer. Sometimes I am a UI designer and a writer. I am currently working on a project called`}</span>
                   &nbsp;
@@ -108,13 +108,13 @@ const About = () => {
                   </span>
                 </p>
 
-                <div className='my-4 tracking-wide text-gray-700 dark:text-gray-100'>
+                <p className='text-lg tracking-wide text-gray-700 dark:text-gray-100'>
                   I grew up in a small town in the Philippines, and went to a
                   school called Mapua University, graduating with a degree in
                   Computer Engineering.
-                </div>
+                </p>
 
-                <div className='tracking-wide text-gray-700 dark:text-gray-100'>
+                <p className='text-lg tracking-wide text-gray-700 dark:text-gray-100'>
                   <span>
                     I spend my free time swimming and running. I am currently
                     learning to
@@ -127,7 +127,7 @@ const About = () => {
                   >
                     play the piano.
                   </a>
-                </div>
+                </p>
               </div>
 
               <div className='mx-auto mt-12 text-base tracking-wide prose text-gray-700 dark:prose-dark dark:text-gray-200 lg:max-w-none lg:row-start-1 lg:col-start-1'>
