@@ -38,6 +38,13 @@ const timeline2018 = [
   },
 ];
 
+const timeline2021 = [
+  {
+    title: 'Joined Luxor',
+    desc: `Building services/platforms for crypto currencies.`,
+  },
+];
+
 const About = () => {
   return (
     <Layout>
@@ -100,20 +107,43 @@ const About = () => {
                     </Link>
                   </span>
                 </p>
-              </div>
 
-              <div className='mx-auto mt-5 text-base tracking-wide prose text-gray-700 dark:prose-dark dark:text-gray-200 lg:max-w-none lg:row-start-1 lg:col-start-1'>
-                <p>
+                <div className='my-4 tracking-wide text-gray-700 dark:text-gray-100'>
                   I grew up in a small town in the Philippines, and went to a
                   school called Mapua University, graduating with a degree in
                   Computer Engineering.
-                </p>
-                <p>
-                  I spend my free time swimming and running. I am currently
-                  learning to play the piano.
-                </p>
+                </div>
 
+                <div className='tracking-wide text-gray-700 dark:text-gray-100'>
+                  <span>
+                    I spend my free time swimming and running. I am currently
+                    learning to
+                  </span>
+                  &nbsp;
+                  <a
+                    className='border-b border-gray-700 dark:border-gray-100'
+                    href='https://soundcloud.com/monopppa/nuvole-bianche-1'
+                    target='external'
+                  >
+                    play the piano.
+                  </a>
+                </div>
+              </div>
+
+              <div className='mx-auto mt-12 text-base tracking-wide prose text-gray-700 dark:prose-dark dark:text-gray-200 lg:max-w-none lg:row-start-1 lg:col-start-1'>
                 <h2>Timeline</h2>
+
+                <h4>2021</h4>
+                <ul>
+                  {timeline2021.map(({ title, desc }) => (
+                    <li key={title}>
+                      <div className='mb-2 font-bold'>{title}</div>
+                      <div className='text-gray-500 dark:text-gray-300'>
+                        {desc}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
 
                 <h4>2020</h4>
                 <ul>

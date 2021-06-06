@@ -24,7 +24,7 @@ module.exports = {
         dim: '#17202A',
       },
       fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        sans: ['Nunito', ...defaultTheme.fontFamily.sans],
       },
       boxShadow: {
         blog:
