@@ -32,8 +32,7 @@ export const getStaticProps = async ({ params }) => {
   const fs = (await import('fs')).default;
   const readingTime = (await import('reading-time')).default;
   const matter = (await import('gray-matter')).default;
-  const renderToString = (await import('next-mdx-remote/render-to-string'))
-    .default;
+  const serialize = (await import('next-mdx-remote/serialize')).serialize;
   const path = (await import('path')).default;
   const dayjs = (await import('dayjs')).default;
   const POSTS_PATH = (await import('utils/mdxUtils')).POSTS_PATH;
@@ -74,7 +73,7 @@ export const getStaticProps = async ({ params }) => {
   //   coverImage,
   // };
 
-  const mdxSource = await renderToString(content, {
+  const mdxSource = await serialize(content, {
     components,
     // Optionally pass remark/rmxehype plugins
     mdxOptions: {

@@ -1,7 +1,8 @@
 import React from 'react';
 import { shape, string } from 'prop-types';
 import Head from 'next/head';
-import hydrate from 'next-mdx-remote/hydrate';
+// import hydrate from 'next-mdx-remote/hydrate';
+import { MDXRemote } from 'next-mdx-remote';
 import useSWR from 'swr';
 import Layout from 'components/Layout';
 import BlogImage from 'components/BlogImage';
@@ -17,7 +18,7 @@ const components = {
 
 const Blog = (props) => {
   const { frontMatter } = props;
-  const content = hydrate(props.source, { components });
+  // const content = hydrate(props.source, { components });
   const { data } = useSWR(`/api/getViews/${props.frontMatter.slug}`, (url) =>
     fetch(url).then((r) => r.json())
   );
@@ -77,7 +78,7 @@ const Blog = (props) => {
         </main>
 
         <article className='mx-auto prose lg:prose-lg dark:prose-dark dark:lg:prose-lg-dark'>
-          {content}
+          <MDXRemote {...props.source} components={components} />
         </article>
       </div>
     </Layout>
