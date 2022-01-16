@@ -2,19 +2,20 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-  purge: {
-    mode: 'all',
-    content: [
-      './posts/**/*.{js,mdx}',
-      './components/**/*.js',
-      './pages/**/*.js',
-      './containers/**/*.js',
-      './next.config.js',
-    ],
-    options: {
-      whitelist: ['h1', 'h2', 'h3', 'p', 'blockquote', 'strong' /* etc. */],
-    },
-  },
+  content: [
+    './posts/**/*.{js,mdx}',
+    './components/**/*.js',
+    './pages/**/*.js',
+    './containers/**/*.js',
+    './next.config.js',
+  ],
+  // purge: {
+  //   mode: 'all',
+  //   content: [],
+  //   options: {
+  //     whitelist: ['h1', 'h2', 'h3', 'p', 'blockquote', 'strong' /* etc. */],
+  //   },
+  // },
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
@@ -27,8 +28,7 @@ module.exports = {
         sans: ['Nunito', ...defaultTheme.fontFamily.sans],
       },
       boxShadow: {
-        blog:
-          '0 30px 60px -10px rgba(0,0,0,.3), 0 18px 36px -18px rgba(0,0,0,.33)',
+        blog: '0 30px 60px -10px rgba(0,0,0,.3), 0 18px 36px -18px rgba(0,0,0,.33)',
         ['blog-sm']:
           '0 35px 65px -10px rgba(0,0,0,.3), 0 23px 41px -18px rgba(0,0,0,.33)',
       },

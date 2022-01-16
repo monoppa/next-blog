@@ -1,4 +1,4 @@
-export default [
+const NAV_ITEMS = [
   {
     label: 'Home',
     path: '/',
@@ -16,3 +16,5 @@ export default [
   //   path: '/contact',
   // },
 ];
+
+export default NAV_ITEMS;

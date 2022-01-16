@@ -2,7 +2,7 @@ import to from 'await-to-js';
 import * as admin from 'firebase-admin';
 import initFirebaseAdmin from 'utils/initFirebaseAdmin';
 
-export default async (req, res) => {
+const getView = async (req, res) => {
   initFirebaseAdmin();
 
   const { slug } = req.query;
@@ -18,7 +18,7 @@ export default async (req, res) => {
   const [error, snapshot] = await to(blogRef.get());
 
   if (error) {
-    console.log('file: [slug].js - line 19 - error', error);
+    // console.log('file: [slug].js - line 19 - error', error);
     res.statusCode = 500;
     res.send('Internal server error');
   }
@@ -34,3 +34,5 @@ export default async (req, res) => {
   res.statusCode = 400;
   res.send('Unhandled error');
 };
+
+export default getView;

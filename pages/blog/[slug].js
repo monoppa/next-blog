@@ -16,7 +16,7 @@ export default function BlogPage(props) {
           window.localStorage.setItem(`${props.frontMatter.slug}`, 'ok');
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
     }
   }, [props.frontMatter.slug]);

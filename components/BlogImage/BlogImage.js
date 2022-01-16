@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import Image from 'next/image';
 import { number, string } from 'prop-types';
@@ -18,7 +19,6 @@ const BlogImage = ({ className, height, ...rest }) => {
           })}
           {...rest}
         />
-
         <div className='absolute top-0 object-cover w-full h-full bg-gray-300 rounded animate-pulse' />
       </div>
     </div>
